@@ -6,6 +6,7 @@ import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
+import com.kotlin.spring.kotlinspringexample.Classes.FibonacciClass
 
 
 
@@ -29,6 +30,21 @@ class RestController {
 		
 	}
 	
+	@ResponseBody
+    @GetMapping("/fibonacci")
+    fun Fibonacci(@RequestParam(value = "index", defaultValue = "0") index: Int) :FibonacciModel
+	{
+		
+    	if (index >= 0)
+		{
+			return  FibonacciModel(index.toString(),"The Fibonacci number at index provided is " + FibonacciClass.fib(index) )
+		}
+		else
+		{
+			return  FibonacciModel(index.toString(),"The Fibonacci number at index provided is invalid. Index must be a positive number")
+		}
+		
+	}
 	
 	
 }
